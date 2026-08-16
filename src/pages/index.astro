@@ -45,7 +45,7 @@ import LangSwitcher from '../components/LangSwitcher.astro';
       if (val) el.textContent = val;
     });
     const flagEl = document.querySelector<HTMLImageElement>('#lang-flag');
-    if (flagEl) { flagEl.src = `${baseUrl}flags/flag${lang}.png`; flagEl.alt = lang; }
+    if (flagEl) { flagEl.src = `${baseUrl}/flags/flag${lang}.png`; flagEl.alt = lang; }
   }
 
   let currentLang: Lang = ((localStorage.getItem(LANG_KEY) as Lang) || DEFAULT_LANG);
