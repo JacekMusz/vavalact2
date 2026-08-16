@@ -1,4 +1,5 @@
 ---
+const imgPath = `${import.meta.env.BASE_URL}team/directors.jpg`;
 ---
 <section id="o-nas">
   <div class="section-inner">
@@ -6,7 +7,7 @@
     <p data-i18n="about.content">Vavalact jest polskim przedsiębiorstwem działającym w branży mleczarskiej od lipca 2019 roku. Proste zasady współpracy, partnerskie i uczciwe podejście do biznesu, satysfakcja Klienta i obustronne zadowolenie.</p>
     
     <div class="img-container"> 
-    <img src="/team/directors.jpg" alt="" class="directors-photo" loading="lazy" /> 
+    <img src={imgPath} alt="" class="directors-photo" loading="lazy" /> 
     </div>
   </div>
 </section>

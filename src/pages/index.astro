@@ -26,6 +26,8 @@ import LangSwitcher from '../components/LangSwitcher.astro';
 <script>
   import { translations, type Lang } from '../i18n/index.ts';
 
+  const baseUrl = import.meta.env.BASE_URL;
+
   // ── i18n ──────────────────────────────────────────────────────────────
   const LANG_KEY = 'vavalact-lang';
   const DEFAULT_LANG: Lang = 'PL';
@@ -43,7 +45,7 @@ import LangSwitcher from '../components/LangSwitcher.astro';
       if (val) el.textContent = val;
     });
     const flagEl = document.querySelector<HTMLImageElement>('#lang-flag');
-    if (flagEl) { flagEl.src = `/flags/flag${lang}.png`; flagEl.alt = lang; }
+    if (flagEl) { flagEl.src = `${baseUrl}flags/flag${lang}.png`; flagEl.alt = lang; }
   }
 
   let currentLang: Lang = ((localStorage.getItem(LANG_KEY) as Lang) || DEFAULT_LANG);
