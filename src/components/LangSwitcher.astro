@@ -3,13 +3,13 @@ const baseUrl = import.meta.env.BASE_URL;
 ---
 <div id="lang-switcher">
   <button id="lang-btn" aria-label="Zmień język">
-    <img id="lang-flag" src={`${baseUrl}flags/flagPL.png`} alt="PL" />
+    <img id="lang-flag" src={`${baseUrl}/flags/flagPL.png`} alt="PL" />
   </button>
   <ul id="lang-dropdown" role="listbox">
     {(['PL', 'EN', 'DE', 'IT'] as const).map((lang) => (
       <li>
         <button data-lang={lang} role="option">
-          <img src={`${baseUrl}flags/flag${lang}.png`} alt={lang} />
+          <img src={`${baseUrl}/flags/flag${lang}.png`} alt={lang} />
           <span>{lang}</span>
         </button>
       </li>
