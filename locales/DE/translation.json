@@ -1,0 +1,60 @@
+{
+  "menuItems": {
+    "about": "Über uns",
+    "offer": "Sortiment",
+    "team": "Ansprechpartner",
+    "partners": "Unsere Partner"
+  },
+  "about": {
+    "content": "Vavalact ist ein renommiertes polnisches Unternehmen, das seit Juli 2019 erfolgreich im Bereich der Milchprodukte tätig ist. Unser Erfolg basiert auf den Prinzipien der kooperativen Zusammenarbeit, fairen Geschäftsbeziehungen und einem kontinuierlichen Engagement für die Zufriedenheit unserer Kunden. Durch konsequente Einhaltung dieser Werte haben wir das Vertrauen sowohl lokaler Molkereien als auch namhafter europäischer Lebensmittelkonzerne gewonnen."
+  },
+  "products": {
+    "liquids": "Flüssigprodukte",
+    "powders": "Milch- und Molkenpulver",
+    "cheeses": "Käse und Fett Produkte",
+    "findMore": "Finde mehr heraus"
+  },
+  "productDetails": {
+    "liquids": {
+      "rawMilk": "Rohmilch",
+      "skimmedMilk": "Magermilch",
+      "cream": "Sahne (36%, 40%)",
+      "skimmedMilkConcentrate": "Magermilchkonzentrat",
+      "sweetWheyConcentrate": "Süßmolkenkonzentrat",
+      "acidWheyConcentrate": "Sauermolkenkonzentrat"
+    },
+    "powders": {
+      "skimmedMilkPowder": "Magermilchpulver",
+      "fullCreamMilkPowder": "Vollmilchpulver",
+      "sweetWheyPowder": "Süßmolkenpulver",
+      "acidWheyPowder": "Sauermolkenpulver",
+      "creamPowder": "Sahnepulver (42%, 50%)",
+      "buttermilkPowder": "Buttermilchpulver",
+      "wheyProteinConcentrate": "Molkenproteinkonzentrat",
+      "milkProteinConcentrate": "Milchproteinkonzentrat"
+    },
+    "cheeses": {
+      "burro": "Butter min. 82%",
+      "burroAnidro": "Wasserfreies Milchfett",
+      "gouda": "Gouda 45% / 48%",
+      "edamer": "Edamer 40%",
+      "caglita": "Quark 40% - 42% - 45% - 48%",
+      "emmentaler": "Emmentaler",
+      "cheddar": "Cheddar",
+      "mozzarella": "Mozzarella 3kg / 9kg / 15kg"
+    }
+  },
+  "team": {
+    "marketEu": "Handel EU",
+    "marketPl": "Handel Polen",
+    "office": "Büro",
+    "bookkepping": "Buchhaltung"
+  },
+  "partners": {
+    "content": "Vavalact bedeutet vor Allem die Qualität von Produkten und Diensten. Unsere Prioritäten erlaubten uns die Mitarbeit mit den größten Nahrungsmittelherstellern – sowohl in Polen als auch in der Europäischen Union – anzufangen. Es ist dank unseren Geschäftspartnern wir eine zuverlässige und solide Marke gebaut haben. Eine Marke, die letztes Jahr den Umsatz von 22 Mio €\u00a0auf dem Milchproduktemarkt erreicht hat. Wir danken für Ihr Vertrauen!"
+  },
+  "contact": "Kontakt",
+  "returnHome": "Zurück zum Menu",
+  "nip": "Steuernummer",
+  "languages": "Sprachen"
+}

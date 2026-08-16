@@ -1,0 +1,240 @@
+---
+const members = [
+  { img: "/team/arsidVodo.webp",         name: "Arsid Vodo",          dept: "Zarząd",          phone: "+48 100 200 300", email: "arsid.vodo@vavalact.com" },
+  { img: "/team/piotrSmoluch.webp",       name: "Piotr Smoluch",       dept: "Dział Techniczny", phone: "+48 100 200 301", email: "piotr.smoluch@vavalact.com" },
+  { img: "/team/jaroslawLis.webp",        name: "Jarosław Lis",        dept: "Dział Prawny",     phone: "+48 100 200 302", email: "jaroslaw.lis@vavalact.com" },
+  { img: "/team/katarzynaMontesano.webp", name: "Katarzyna Montesano", dept: "Marketing",        phone: "+48 100 200 303", email: "katarzyna.montesano@vavalact.com" },
+  { img: "/team/gabrielaRenik.webp",      name: "Gabriela Renik",      dept: "Obsługa Klienta",  phone: "+48 100 200 304", email: "gabriela.renik@vavalact.com" },
+];
+---
+
+<section id="zespol">
+  <div class="section-inner team-inner">
+    <h2 data-i18n="menuItems.team">Zespół</h2>
+    <div class="carousel-wrapper">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          {members.map(m => (
+            <div class="team-member">
+              <img src={m.img} alt={m.name} loading="lazy" />
+              <div class="member-info">
+                <p class="member-name">{m.name}</p>
+                <p class="member-detail">{m.dept}</p>
+                <p class="member-detail">{m.phone}</p>
+                <p class="member-detail">{m.email}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn prev" aria-label="Poprzedni">&#8249;</button>
+        <button class="carousel-btn next" aria-label="Następny">&#8250;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #zespol {
+    background: var(--color-milk);
+    color: var(--color-dark);
+  }
+
+  .team-inner {
+    max-width: 1100px;
+    width: 100%;
+  }
+
+  .carousel-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .carousel-viewport {
+    container-type: inline-size;
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .carousel-track {
+    display: flex;
+    will-change: transform;
+  }
+
+  .team-member {
+    flex: none;
+    width: calc(100cqi / 3);
+    box-sizing: border-box;
+    padding: 0 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  @container (max-width: 700px) {
+    .team-member {
+      width: 100cqi;
+    }
+  }
+
+  .team-member img {
+    width: 75%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 8px;
+  }
+
+  .member-info {
+    text-align: center;
+    width: 100%;
+  }
+
+  .member-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+    max-width: unset;
+  }
+
+  .member-detail {
+    font-size: 0.72rem;
+    opacity: 0.65;
+    margin: 0.2rem 0 0;
+    max-width: unset;
+  }
+
+  .carousel-btn {
+    flex-shrink: 0;
+    background: none;
+    border: 2px solid var(--color-dark);
+    color: var(--color-dark);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .carousel-btn:hover {
+    background: var(--color-dark);
+    color: var(--color-milk);
+  }
+
+  h2 {
+    position: relative;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: center;
+  }
+
+  h2.underline-animate::after {
+    animation: underline-draw 500ms ease forwards;
+  }
+</style>
+
+<script>
+  const section = document.getElementById('zespol')!;
+  const track = section.querySelector<HTMLElement>('.carousel-track')!;
+  const viewport = section.querySelector<HTMLElement>('.carousel-viewport')!;
+  const prevBtn = section.querySelector<HTMLButtonElement>('.carousel-btn.prev')!;
+  const nextBtn = section.querySelector<HTMLButtonElement>('.carousel-btn.next')!;
+
+  const originals = Array.from(track.children) as HTMLElement[];
+  const total = originals.length;
+  let visible = 0;
+  let trackPos = 0;
+  let isAnimating = false;
+
+  function getVisible() {
+    return window.innerWidth >= 1024 ? 3 : 1;
+  }
+
+  function buildTrack() {
+    visible = getVisible();
+    track.innerHTML = '';
+
+    for (let i = total - visible; i < total; i++) {
+      track.appendChild(originals[i].cloneNode(true));
+    }
+    originals.forEach(item => track.appendChild(item.cloneNode(true)));
+    for (let i = 0; i < visible; i++) {
+      track.appendChild(originals[i].cloneNode(true));
+    }
+
+    trackPos = visible;
+    setPosition(false);
+  }
+
+  function itemW() {
+    return viewport.offsetWidth / visible;
+  }
+
+  function setPosition(animate: boolean) {
+    const offset = -trackPos * itemW();
+    track.style.transition = animate ? 'transform 0.4s ease' : 'none';
+    void track.offsetWidth; // flush styles before applying transform
+    track.style.transform = `translateX(${offset}px)`;
+  }
+
+  function step(dir: 1 | -1) {
+    if (isAnimating) return;
+    isAnimating = true;
+    trackPos += dir;
+    setPosition(true);
+  }
+
+  track.addEventListener('transitionend', () => {
+    isAnimating = false;
+    if (trackPos >= visible + total) {
+      trackPos -= total;
+      setPosition(false);
+    } else if (trackPos < visible) {
+      trackPos += total;
+      setPosition(false);
+    }
+  });
+
+  prevBtn.addEventListener('click', () => step(-1));
+  nextBtn.addEventListener('click', () => step(1));
+
+  // ResizeObserver handles both initial sizing and window resizes
+  const ro = new ResizeObserver(() => {
+    const newVisible = getVisible();
+    if (newVisible !== visible) {
+      buildTrack();
+    } else if (visible > 0) {
+      setPosition(false);
+    }
+  });
+  ro.observe(viewport);
+</script>

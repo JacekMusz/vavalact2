@@ -1,0 +1,60 @@
+{
+  "menuItems": {
+    "about": "Chi siamo",
+    "offer": "Prodotti",
+    "team": "La nostra squadra",
+    "partners": "I nostri Partner"
+  },
+  "about": {
+    "content": "Vavalact è\u00a0una azienda polacca che opera nel settore dei prodotti lattiero-caseario da luglio 2019. Semplici regole di cooperazione, correttezza nei confronti degli affari, soddisfazione del cliente e\u00a0reciproca soddisfazione. Grazie a\u00a0queste priorità, abbiamo conquistato la fiducia sia dei caseifici locali che dei più grandi gruppi alimentari europei."
+  },
+  "products": {
+    "liquids": "Prodotti Liquidi",
+    "powders": "Polveri di Latte e Siero",
+    "cheeses": "Formaggi e Grassi",
+    "findMore": "Scopri di più"
+  },
+  "productDetails": {
+    "liquids": {
+      "rawMilk": "Latte Crudo ( Grasso 3,5% - 4,3 %)",
+      "skimmedMilk": "Latte Magro",
+      "cream": "Panna di Centrifuga 40%",
+      "skimmedMilkConcentrate": "Latte Magro Concentratto",
+      "sweetWheyConcentrate": "Siero Dolce Concentratto",
+      "acidWheyConcentrate": "Siero Acido Concentratto"
+    },
+    "powders": {
+      "skimmedMilkPowder": "Latte Magro in Polvere",
+      "fullCreamMilkPowder": "Latte Intero in Polvere",
+      "sweetWheyPowder": "Siero Dolce in Polvere",
+      "acidWheyPowder": "Siero Acido in Polvere",
+      "creamPowder": "Panna in Polvere (42% - 50%)",
+      "buttermilkPowder": "Latticello in Polvere",
+      "wheyProteinConcentrate": "Proteine del Siero ( WPC )",
+      "milkProteinConcentrate": "Proteine del Latte ( MPC )"
+    },
+    "cheeses": {
+      "burro": "Burro min. 82%",
+      "burroAnidro": "Burro Anidro",
+      "gouda": "Gouda 45% / 48%",
+      "emader": "Edamer 40%",
+      "caglita": "Caglita 40% - 42% - 45% - 48%",
+      "emmentaler": "Ementaler",
+      "cheddar": "Cheddar",
+      "mozzarella": "Mozzarella 3kg / 9kg / 15kg"
+    }
+  },
+  "team": {
+    "marketEu": "Commercio EU",
+    "marketPl": "Commercio PL",
+    "office": "Ufficio",
+    "bookkepping": "Contabilità"
+  },
+  "partners": {
+    "content": "Vavalact si occupa principalmente di materie prime per l’industria casearia, offrendo ai propri clienti un servizio di alta qualità. La nostra competenza e\u00a0la nostra dedizione ci hanno permesso di avviare una cooperazione con i\u00a0principali produttori del settore, sia in Polonia che in molti paesi dell'Unione Europea. Grazie anche ai nostri fornitori abbiamo costruito un marchio forte ed affidabile, la cui quota nel mercato dei prodotti lattiero-caseari nel solo 2023 ha superato il valore di 300 milioni di PLN. Grazie per la tua fiducia."
+  },
+  "contact": "Contatto",
+  "returnHome": "Ritorna al menu",
+  "nip": "IVA",
+  "languages": "Lingue"
+}

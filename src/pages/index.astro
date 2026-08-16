@@ -1,0 +1,248 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Offer from '../components/Offer.astro';
+import Team from '../components/Team.astro';
+import Clients from '../components/Clients.astro';
+import Contact from '../components/Contact.astro';
+import Nav from '../components/Nav.astro';
+import LangSwitcher from '../components/LangSwitcher.astro';
+---
+
+<Layout title="Vavalact">
+  <main>
+    <Hero />
+    <About />
+    <Offer />
+    <Team />
+    <Clients />
+    <Contact />
+  </main>
+  <Nav />
+  <LangSwitcher />
+</Layout>
+
+<script>
+  import { translations, type Lang } from '../i18n/index.ts';
+
+  // ── i18n ──────────────────────────────────────────────────────────────
+  const LANG_KEY = 'vavalact-lang';
+  const DEFAULT_LANG: Lang = 'PL';
+
+  function getI18nVal(obj: Record<string, any>, path: string): string {
+    return path.split('.').reduce((o: any, k) => o?.[k], obj) ?? '';
+  }
+
+  function applyLang(lang: Lang) {
+    const t = translations[lang];
+    document.querySelectorAll<HTMLElement>('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (!key) return;
+      const val = getI18nVal(t, key);
+      if (val) el.textContent = val;
+    });
+    const flagEl = document.querySelector<HTMLImageElement>('#lang-flag');
+    if (flagEl) { flagEl.src = `/flags/flag${lang}.png`; flagEl.alt = lang; }
+  }
+
+  let currentLang: Lang = ((localStorage.getItem(LANG_KEY) as Lang) || DEFAULT_LANG);
+  applyLang(currentLang);
+
+  document.getElementById('lang-btn')?.addEventListener('click', e => {
+    e.stopPropagation();
+    document.getElementById('lang-dropdown')?.classList.toggle('open');
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-lang]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang') as Lang;
+      if (!lang) return;
+      currentLang = lang;
+      localStorage.setItem(LANG_KEY, lang);
+      applyLang(lang);
+      document.getElementById('lang-dropdown')?.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', () => {
+    document.getElementById('lang-dropdown')?.classList.remove('open');
+  });
+
+  // ── Section transition controller ───────────────────────────────────
+  const sections = Array.from(
+    document.querySelectorAll<HTMLElement>('main > section')
+  );
+  let current = 0;
+  let busy = false;
+
+  // Stack all sections; show only the first
+  sections.forEach((s, i) => {
+    s.style.zIndex = i === 0 ? '2' : '1';
+    if (i !== 0) {
+      const inner = s.querySelector<HTMLElement>('.section-inner, .hero-content');
+      if (inner) inner.style.opacity = '0';
+    }
+  });
+
+  // Full-screen overlay driven by clip-path
+  const overlay = document.createElement('div');
+  Object.assign(overlay.style, {
+    position: 'fixed',
+    inset: '0',
+    zIndex: '10',
+    pointerEvents: 'none',
+    willChange: 'clip-path',
+    clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)',
+  });
+  document.body.appendChild(overlay);
+
+  // true = section has light background → nav must be dark-colored
+  const sectionIsLight = [true, true, true, true, false, false];
+
+  function updateNav(idx: number) {
+    document.querySelectorAll('.nav-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === idx)
+    );
+    const nav = document.getElementById('section-nav');
+    if (nav) (nav as HTMLElement).dataset.theme = sectionIsLight[idx] ? 'dark' : 'light';
+  }
+
+  updateNav(0);
+  document.getElementById('nav-up')?.addEventListener('click', () => goTo(current - 1));
+  document.getElementById('nav-down')?.addEventListener('click', () => goTo(current + 1));
+  document.querySelectorAll<HTMLButtonElement>('.nav-dot').forEach(btn =>
+    btn.addEventListener('click', () => goTo(Number(btn.dataset.index)))
+  );
+
+  /**
+   * fromTop=false → covers area BELOW waveY (forward flood, bottom-up)
+   * fromTop=true  → covers area ABOVE waveY (backward flood, top-down)
+   * Three summed sinusoids for an organic, variable milk edge.
+   */
+  function waveClip(waveY: number, t: number, fromTop = false): string {
+    const N = 20;
+    const amp = waveY > 3 && waveY < 97 ? 6 : 0;
+    const pts: string[] = [];
+    for (let i = N; i >= 0; i--) {
+      const x = (i / N) * 100;
+      const w =
+        Math.sin((i / N) * Math.PI * 2.0 + t)       * amp +
+        Math.sin((i / N) * Math.PI * 3.5 + t * 1.7) * amp * 0.38;
+      pts.push(`${x.toFixed(2)}% ${(waveY + w).toFixed(2)}%`);
+    }
+    const base = fromTop ? '0% 0%, 100% 0%' : '0% 100%, 100% 100%';
+    return `polygon(${base}, ${pts.join(', ')})`;
+  }
+
+  function easeInOut(t: number): number {
+    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  }
+
+  function runAnim(
+    ms: number,
+    tick: (progress: number, elapsed: number) => void
+  ): Promise<void> {
+    return new Promise(resolve => {
+      const t0 = performance.now();
+      const frame = (now: number) => {
+        const elapsed = now - t0;
+        const raw = Math.min(elapsed / ms, 1);
+        tick(raw, elapsed);
+        raw < 1 ? requestAnimationFrame(frame) : resolve();
+      };
+      requestAnimationFrame(frame);
+    });
+  }
+
+  async function goTo(next: number) {
+    if (busy || next === current || next < 0 || next >= sections.length) return;
+    busy = true;
+
+    const dest = sections[next];
+    const isBackward = next < current;
+    const inner = dest.querySelector<HTMLElement>('.section-inner, .hero-content');
+
+    // Hero has a photo bg — slow opacity crossfade of the entire section
+    if (next === 0) {
+      dest.style.opacity = '0';
+      dest.style.zIndex = '3';
+      updateNav(next);
+      await runAnim(1000, (raw) => {
+        dest.style.opacity = String(easeInOut(raw));
+      });
+      sections[current].style.zIndex = '1';
+      dest.style.zIndex = '2';
+      dest.style.opacity = '';
+      current = next;
+      busy = false;
+      return;
+    }
+
+    overlay.style.backgroundColor = getComputedStyle(dest).backgroundColor;
+
+    // Phase 1 — flood (bottom-up forward, top-down backward)
+    if (!isBackward) {
+      await runAnim(750, (raw, ms) => {
+        overlay.style.clipPath = waveClip(100 - easeInOut(raw) * 108, ms * 0.006);
+      });
+    } else {
+      await runAnim(750, (raw, ms) => {
+        overlay.style.clipPath = waveClip(-8 + easeInOut(raw) * 116, ms * 0.006, true);
+      });
+    }
+    overlay.style.clipPath = 'inset(0)';
+    updateNav(next);
+
+    // Swap layers while screen is fully covered
+    sections[current].style.zIndex = '1';
+    dest.style.zIndex = '2';
+    if (inner) { inner.style.transition = 'none'; inner.style.opacity = '0'; }
+
+    // Phase 2 — hide overlay instantly, content fades in via CSS transition
+    requestAnimationFrame(() => {
+      if (inner) { inner.style.transition = 'opacity 0.55s ease'; inner.style.opacity = '1'; }
+      const h2 = dest.querySelector<HTMLElement>('h2');
+      if (h2) {
+        h2.classList.remove('underline-animate');
+        void h2.offsetWidth;
+        h2.classList.add('underline-animate');
+      }
+    });
+    overlay.style.clipPath = 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)';
+
+    current = next;
+    busy = false;
+  }
+
+  // ── Input: wheel ──────────────────────────────────────────────────────
+  let wheelBuf = 0;
+  let wheelTid: ReturnType<typeof setTimeout> | undefined;
+  window.addEventListener(
+    'wheel',
+    e => {
+      e.preventDefault();
+      wheelBuf += e.deltaY;
+      clearTimeout(wheelTid);
+      wheelTid = setTimeout(() => {
+        if (Math.abs(wheelBuf) > 10) goTo(wheelBuf > 0 ? current + 1 : current - 1);
+        wheelBuf = 0;
+      }, 60);
+    },
+    { passive: false }
+  );
+
+  // ── Input: touch ──────────────────────────────────────────────────────
+  let touchY = 0;
+  window.addEventListener('touchstart', e => { touchY = e.touches[0].clientY; }, { passive: true });
+  window.addEventListener('touchend', e => {
+    const dy = touchY - e.changedTouches[0].clientY;
+    if (Math.abs(dy) > 40) goTo(dy > 0 ? current + 1 : current - 1);
+  }, { passive: true });
+
+  // ── Input: keyboard ───────────────────────────────────────────────────
+  window.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') goTo(current + 1);
+    if (e.key === 'ArrowUp'   || e.key === 'PageUp')   goTo(current - 1);
+  });
+</script>

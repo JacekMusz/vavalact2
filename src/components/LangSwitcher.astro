@@ -1,0 +1,87 @@
+---
+---
+<div id="lang-switcher">
+  <button id="lang-btn" aria-label="Zmień język">
+    <img id="lang-flag" src="/flags/flagPL.png" alt="PL" />
+  </button>
+  <ul id="lang-dropdown" role="listbox">
+    {(['PL', 'EN', 'DE', 'IT'] as const).map((lang) => (
+      <li>
+        <button data-lang={lang} role="option">
+          <img src={`/flags/flag${lang}.png`} alt={lang} />
+          <span>{lang}</span>
+        </button>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  #lang-switcher {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 25;
+  }
+
+  #lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+  }
+
+  #lang-btn img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  #lang-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+    list-style: none;
+    padding: 0.35rem 0;
+    min-width: 88px;
+    overflow: hidden;
+  }
+
+  #lang-dropdown.open {
+    display: block;
+  }
+
+  #lang-dropdown li button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.4rem 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1a1917;
+  }
+
+  #lang-dropdown li button:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  #lang-dropdown img {
+    width: 20px;
+    height: auto;
+    border-radius: 2px;
+  }
+</style>

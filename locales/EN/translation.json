@@ -1,0 +1,60 @@
+{
+  "menuItems": {
+    "about": "About",
+    "offer": "Products",
+    "team": "Our team",
+    "partners": "Our Partners"
+  },
+  "about": {
+    "content": "Vavalact is a\u00a0Polish company that has been operating in the dairy sector since July 2019. Simple rules of cooperation, fairness to business, customer satisfaction and mutual satisfaction. Thanks to these priorities, we have won the trust of both local dairies and the largest European food groups."
+  },
+  "products": {
+    "liquids": "Liquid Products",
+    "powders": "Milk & Whey Powders",
+    "cheeses": "Cheeses & Fats",
+    "findMore": "Find out more"
+  },
+  "productDetails": {
+    "liquids": {
+      "rawMilk": "Raw milk",
+      "skimmedMilk": "Skimmed Milk",
+      "cream": "Cream (36%, 40%)",
+      "skimmedMilkConcentrate": "Skimmed Milk Concentrate",
+      "sweetWheyConcentrate": "Sweet Whey Concentrate",
+      "acidWheyConcentrate": "Acid Whey Concentrate"
+    },
+    "powders": {
+      "skimmedMilkPowder": "Skimmed Milk Powder",
+      "fullCreamMilkPowder": "Full Cream Milk Powder",
+      "sweetWheyPowder": "Sweet Whey Powder",
+      "acidWheyPowder": "Acid Whey Powder",
+      "creamPowder": "Cream Powder (42%, 50%)",
+      "buttermilkPowder": "Butter Milk Powder",
+      "wheyProteinConcentrate": "Whey Protein Concentrate",
+      "milkProteinConcentrate": "Milk Protein Concentrate"
+    },
+    "cheeses": {
+      "burro": "Butter min. 82%",
+      "burroAnidro": "Anhydrous milk fat (AMF)",
+      "gouda": "Gouda 45% / 48%",
+      "edamer": "Edamer 40%",
+      "caglita": "Curd 40% - 42% - 45% - 48%",
+      "emmentaler": "Emmentaler",
+      "cheddar": "Cheddar",
+      "mozzarella": "Mozzarella 3kg / 9kg / 15kg"
+    }
+  },
+  "team": {
+    "marketEu": "Market EU",
+    "marketPl": "Market PL",
+    "office": "Office",
+    "bookkepping": "Bookkepping"
+  },
+  "partners": {
+    "content": "Vavalact is above all, about high quality of products and services. Our priorities allowed us to take up cooperation with leading food manufacturers - both in Poland as well as in the European Union. It is thanks to our business partners that we created a\u00a0solid and stable brand the turnover of which in 2023 alone reached over 300 millions PLN on the dairy products market. Thank you for your trust."
+  },
+  "contact": "Contact",
+  "returnHome": "Return home",
+  "nip": "VAT",
+  "languages": "Languages"
+}

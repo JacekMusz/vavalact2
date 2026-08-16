@@ -1,0 +1,60 @@
+{
+  "menuItems": {
+    "about": "O nas",
+    "offer": "Oferta",
+    "team": "Zespół",
+    "partners": "Zaufali nam"
+  },
+  "about": {
+    "content": "Vavalact jest polskim przedsiębiorstwem działającym w\u00a0branży mleczarskiej od lipca 2019 roku. Proste zasady współpracy, partnerskie i\u00a0uczciwe podejście do biznesu, satysfakcja Klienta i\u00a0obustronne zadowolenie. Dzięki tak ustalonym priorytetom Vavalact zdobył zaufanie zarówno lokalnych mleczarni, jak i\u00a0największych europejskich koncernów spożywczych."
+  },
+  "products": {
+    "liquids": "Produkty płynne",
+    "powders": "Proszki mleczne i\u00a0serwatkowe",
+    "cheeses": "Sery i\u00a0tłuszcze",
+    "findMore": "Dowiedz się więcej"
+  },
+  "productDetails": {
+    "liquids": {
+      "rawMilk": "Mleko pełne przerzutowe",
+      "skimmedMilk": "Mleko odtłuszczone przerzutowe",
+      "cream": "Śmietana przerzutowa (36%, 40%)",
+      "skimmedMilkConcentrate": "Koncentrat mleka odłuszczonego (SMC)",
+      "sweetWheyConcentrate": "Koncentrat serwatki słodkiej (SWC)",
+      "acidWheyConcentrate": "Koncentrat serwatki kwaśnej (AWC)"
+    },
+    "powders": {
+      "skimmedMilkPowder": "Mleko odtłuszczone w proszku (SMP)",
+      "fullCreamMilkPowder": "Mleko pełne w proszku (FCMP)",
+      "sweetWheyPowder": "Serwatka słodka w proszku (SWP)",
+      "acidWheyPowder": "Serwatka kwaśna w proszku (AWP)",
+      "creamPowder": "Śmietanka w proszku (42%, 50%)",
+      "buttermilkPowder": "Maślanka w proszku (BMP)",
+      "wheyProteinConcentrate": "Koncentrat białek serwatkowych (WPC)",
+      "milkProteinConcentrate": "Koncentrat białek mlecznych (MPC)"
+    },
+    "cheeses": {
+      "burro": "Masło min. 82%",
+      "burroAnidro": "Masło bezwodne",
+      "gouda": "Gouda 45% / 48%",
+      "edamer": "Edamer 40%",
+      "caglita": "Twaróg 40% - 42% - 45% - 48%",
+      "emmentaler": "Emmentaler",
+      "cheddar": "Cheddar",
+      "mozzarella": "Mozzarella 3kg / 9kg / 15kg"
+    }
+  },
+  "team": {
+    "marketEu": "Handel EU",
+    "marketPl": "Handel PL",
+    "office": "Biuro",
+    "bookkepping": "Rachunkowość"
+  },
+  "partners": {
+    "content": "Vavalact to przede wszystkim wysoka jakość produktów i\u00a0usług. Priorytety, którymi się kierujemy, pozwoliły nam podjąć współpracę z\u00a0czołowymi producentami żywności - zarówno w Polsce, jak i\u00a0w\u00a0wielu krajach Unii Europejskiej. To dzieki naszym kontrahentom zbudowaliśmy silną i\u00a0stabilną markę, której udział w\u00a0rynku produktów nabiałowych w\u00a0samym 2023 roku przekroczył wartość 300 milionów złotych. Dziękujemy za zaufanie."
+  },
+  "contact": "Kontakt",
+  "returnHome": "Powrót do menu",
+  "nip": "NIP",
+  "languages": "Języki"
+}

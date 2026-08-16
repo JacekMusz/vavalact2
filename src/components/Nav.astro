@@ -1,0 +1,112 @@
+---
+---
+<nav id="section-nav" data-theme="light" aria-label="Nawigacja sekcji">
+  <button id="nav-up" class="nav-btn" aria-label="Poprzednia sekcja">
+    <span class="nav-chevron nav-chevron--up"></span>
+  </button>
+
+  <ul id="nav-dots" role="list">
+    {[0, 1, 2, 3, 4, 5].map((i) => (
+      <li>
+        <button
+          class={i === 0 ? 'nav-dot active' : 'nav-dot'}
+          data-index={String(i)}
+          aria-label={`Sekcja ${i + 1}`}
+        />
+      </li>
+    ))}
+  </ul>
+
+  <button id="nav-down" class="nav-btn" aria-label="Następna sekcja">
+    <span class="nav-chevron nav-chevron--down"></span>
+  </button>
+</nav>
+
+<style>
+  #section-nav {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 5%;
+    transform: translateY(0%);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.4s ease;
+  }
+
+  /* light = nav on dark section bg, dark = nav on light section bg */
+  #section-nav[data-theme="light"] { color: rgba(245, 242, 236, 0.8); }
+  #section-nav[data-theme="dark"]  { color: rgba(26, 25, 23, 0.7); }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    opacity: 0.55;
+    transition: opacity 0.2s;
+    transform: translateX(-1px);
+  }
+  .nav-btn:hover { opacity: 1; }
+
+  /* CSS chevron drawn with two borders */
+  .nav-chevron {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid currentColor;
+    border-top: 1.5px solid currentColor;
+  }
+  .nav-chevron--up   { transform: rotate(-45deg) translate(1px, 1px); }
+  .nav-chevron--down { transform: rotate(135deg) translate(-1px, -1px); }
+
+  #nav-dots {
+    list-style: none;
+    margin: 0.2rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .nav-dot {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+  }
+
+  /* Dot drawn via ::before pseudo-element for clean sizing transitions */
+  .nav-dot::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.38;
+    transition: width 0.25s ease, height 0.25s ease, opacity 0.25s ease;
+  }
+
+  /* Active dot is 50% larger: 6px * 1.5 = 9px */
+  .nav-dot.active::before {
+    width: 9px;
+    height: 9px;
+    opacity: 1;
+  }
+
+  @media (max-width: 1024px) {
+    #section-nav { right: 0.75rem; }
+  }
+</style>

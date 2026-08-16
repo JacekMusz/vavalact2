@@ -1,0 +1,77 @@
+:root {
+  --color-milk: #F5F2EC;
+  --color-primary: #007266;
+  --color-primary-light: #60A79F;
+  --color-dark: #1A1917;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: raleway, system-ui, -apple-system, sans-serif;
+  color: #f0f0f0;
+}
+
+section {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 36px;
+}
+
+h1, h2 {
+  font-size: clamp(1.6rem, 4vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  font-size: clamp(0.8rem, 2vw, 1.25rem);
+  line-height: 1.4;
+  opacity: 0.75;
+  max-width: 60ch;
+  margin-top: 1rem;
+}
+
+.section-inner {
+  text-align: center;
+  padding: 1rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* ── Mobile (≤1024px) ── */
+@media (max-width: 1024px) {
+  h1, h2 {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  p {
+    font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+  }
+
+  .section-inner {
+    padding: 2.5rem;
+  }
+}
+
+@keyframes underline-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}

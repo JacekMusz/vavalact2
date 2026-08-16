@@ -1,0 +1,42 @@
+---
+---
+<section id="zaufali-nam">
+  <div class="section-inner">
+    <h2 data-i18n="menuItems.partners">Zaufali nam</h2>
+    <p data-i18n="partners.content">Vavalact to przede wszystkim wysoka jakość produktów i usług. Priorytety, którymi się kierujemy, pozwoliły nam podjąć współpracę z czołowymi producentami żywności — zarówno w Polsce, jak i w wielu krajach Unii Europejskiej.</p>
+  </div>
+</section>
+
+<style>
+  #zaufali-nam {
+    background: var(--color-primary);
+    color: #F5F2EC;
+  }
+
+  #zaufali-nam p {
+    max-width: 100%;
+  }
+
+  h2 {
+    position: relative;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: #F5F2EC;
+    transform: scaleX(0);
+    transform-origin: center;
+  }
+
+  h2.underline-animate::after {
+    animation: underline-draw 500ms ease forwards;
+  }
+</style>
